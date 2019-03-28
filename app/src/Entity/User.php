@@ -7,6 +7,7 @@ use App\Entity\Traits\CreatedTrait;
 use App\Entity\Traits\RemovedAtTrait;
 use App\Entity\Traits\UpdatedAtTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
