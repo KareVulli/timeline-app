@@ -17,4 +17,9 @@ export default new Vapi({
       property: "event",
       path: "/event"
     })
+    .post({
+      action: "loginUser",
+      property: "token",
+      path: "/login"
+    })
     .getStore();

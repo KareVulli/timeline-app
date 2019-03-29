@@ -1,29 +1,37 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <router-link class="navbar-brand" to="/home">Timeline</router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-                    <router-link class="nav-item" tag="li" to="/home" active-class="active">
-                        <a class="nav-link">Home</a>
-                    </router-link>
-                    <router-link class="nav-item" tag="li" to="/events" active-class="active">
-                        <a class="nav-link">Events</a>
-                    </router-link>
-                </ul>
-            </div>
-        </nav>
+        <b-navbar toggleable="lg" type="light" variant="light">
+            <b-navbar-brand to="/home">Timeline</b-navbar-brand>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-collapse id="nav-collapse" is-nav>
+                <b-navbar-nav>
+                    <b-nav-item to="/home">Home</b-nav-item>
+                    <b-nav-item to="/events">Events</b-nav-item>
+                </b-navbar-nav>
+                <b-navbar-nav class="ml-auto">
+                    <b-nav-item @click="showLoginModal = !showLoginModal">Log in</b-nav-item>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
         <div class="container">
             <router-view></router-view>
         </div>
+        <login-modal v-bind:show="showLoginModal" @hide="showLoginModal = false" ></login-modal>
     </div>
 </template>
 
 <script>
+    import LoginModal from './components/LoginModal';
+
     export default {
         name: 'app',
+        components: {
+            LoginModal
+        },
+        data () {
+            return {
+                showLoginModal: false
+            };
+        }
     }
 </script>
