@@ -4,7 +4,8 @@ export default new Vapi({
     baseURL: "./api",
       state: {
         events: [],
-        event: null
+        event: null,
+        auth: null
       }
     })
     .get({
@@ -19,7 +20,7 @@ export default new Vapi({
     })
     .post({
       action: "loginUser",
-      property: "token",
+      property: "auth",
       path: "/login"
     })
     .getStore();

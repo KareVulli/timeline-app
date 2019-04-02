@@ -4,23 +4,27 @@
             <h1>Events</h1>
         </div>
 
-        <div class="row col">
-            <form>
-                <div class="form-row">
-                    <div class="col-12">
-                        <input v-model="title" type="text" class="form-control">
-                    </div>
-                    <div class="col-12">
-                        <input v-model="content" type="text" class="form-control">
-                    </div>
-                    <div class="col-12">
-                        <input v-model="time" type="datetime-local" class="form-control">
-                    </div>
-                    <div class="col-12">
-                        <button @click="createEvent()" :disabled="content.length === 0 || isLoading" type="button" class="btn btn-primary">Create</button>
-                    </div>
-                </div>
-            </form>
+        <div class="row">
+            <div class="col">
+                <b-alert v-if="pending.event" show>Loading...</b-alert>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <b-form @submit="onSubmit">
+                    <b-form-group label="Title:" label-for="input-title">
+                        <b-form-input id="input-title" v-model="title" required placeholder="Enter event title"></b-form-input>
+                    </b-form-group>
+                    <b-form-group label="Content:" label-for="input-content">
+                        <b-form-input id="input-content" v-model="content" required placeholder="Enter event content"></b-form-input>
+                    </b-form-group>
+                    <b-form-group label="Time:" label-for="input-time">
+                        <b-form-input id="input-time" v-model="time" type="datetime-local" required></b-form-input>
+                    </b-form-group>
+                    <b-button type="submit" variant="primary" :disabled="title.length === 0 || content.length === 0 || pending.event" >Add new event</b-button>
+                </b-form>
+            </div>
         </div>
 
         <div v-if="pending.events" class="row col">
@@ -72,13 +76,13 @@
                 "getEvents",
                 "createEvent",
             ]),
-            createEvent () {
-                this.$store.dispatch('post/createEvent', this.$data.title, this.$data.content, this.$data.time)
-                    .then(() => {
-                        this.$data.title = '';
-                        this.$data.content = '';  
-                        this.$data.time = '';
-                    });
+            onSubmit (evt) {
+                evt.preventDefault();
+                this.createEvent({data: {
+                    title: this.title,
+                    content: this.content,
+                    time: this.time
+                }});
             },
         },
     }
