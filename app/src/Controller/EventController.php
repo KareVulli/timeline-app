@@ -23,7 +23,7 @@ class EventController extends FOSRestController
     public function getEventsAction(): View
     {
         $repository = $this->getDoctrine()->getRepository(Event::class);
-        $events = $repository->findall();
+        $events = $repository->findAllOrdered();
         return $this->view($events);
     }
 

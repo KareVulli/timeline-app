@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <b-container>
         <div class="row col">
             <h1>Events</h1>
         </div>
@@ -42,9 +42,9 @@
         </div> -->
 
         <div v-else v-for="event in events" class="row col" v-bind:key="event.id">
-            <event v-bind:content="event.content"></event>
+            <event v-bind:content="event.content" v-bind:title="event.title" v-bind:time="event.time"></event>
         </div>
-    </div>
+    </b-container>
 </template>
 
 <script>

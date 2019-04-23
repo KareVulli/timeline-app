@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <b-container>
         <div class="row col">
             <h1>Homepage</h1>
         </div>
@@ -7,7 +7,7 @@
         <div class="row col">
             <p>This is the homepage of our Vue.js application.</p>
         </div>
-    </div>
+    </b-container>
 </template>
 
 <script>

@@ -6,6 +6,7 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item to="/home">Home</b-nav-item>
+                    <b-nav-item to="/timeline">Timeline</b-nav-item>
                     <b-nav-item to="/events">Events</b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
@@ -14,9 +15,7 @@
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
-        <div class="container">
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
         <login-modal v-bind:show="showLoginModal" @hide="hideLoginModal" ></login-modal>
     </div>
 </template>
