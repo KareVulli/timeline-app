@@ -1,6 +1,6 @@
 <template>
-    <b-modal ref="login-modal" @ok="onSubmit" @hide="onHide" v-bind:ok-disabled="pending.auth" title="Log in" ok-title="Log in...">
-        <b-form>
+    <b-modal ref="login-modal" @ok="onSubmit" @hide="onHide" v-bind:ok-disabled="pending.auth" title="Log in" ok-title="Log in">
+        <b-form ref="form" @submit.stop.prevent="onSubmit">
             <p v-if="pending.auth">Loading...</p>
 
             <div v-else-if="error.auth" class="alert alert-danger" role="alert">
@@ -41,7 +41,8 @@
             },
             token(newValue, oldValue) {
                 if (newValue) {
-                    this.onHide();
+                    this.$refs['login-modal'].hide();
+                    this.$emit('hide');
                 }
             }
         },
@@ -64,6 +65,7 @@
             onSubmit(evt) {
                 evt.preventDefault();
                 this.loginUser({ data: { email: this.form.email, password: this.form.password } });
+                return false;
             },
             onHide(evt) {
                 this.$emit('hide');

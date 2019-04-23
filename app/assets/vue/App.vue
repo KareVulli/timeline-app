@@ -17,7 +17,7 @@
         <div class="container">
             <router-view></router-view>
         </div>
-        <login-modal v-bind:show="showLoginModal" @hide="showLoginModal = false" ></login-modal>
+        <login-modal v-bind:show="showLoginModal" @hide="hideLoginModal" ></login-modal>
     </div>
 </template>
 
@@ -43,7 +43,10 @@
         methods: {
             ...mapMutations([
                 'logout'
-            ])
+            ]),
+            hideLoginModal: function () {
+                this.showLoginModal = false;
+            }
         }
     }
 </script>
